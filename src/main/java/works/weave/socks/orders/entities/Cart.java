@@ -4,6 +4,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import works.weave.socks.orders.aspect.Attack;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +22,8 @@ public class Cart {
     @DBRef
     private List<Item> items = new ArrayList<>();
 
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
+
     public Cart(String customerId) {
         this.customerId = customerId;
     }
@@ -29,7 +36,9 @@ public class Cart {
         return items;
     }
 
+    @Attack(type = "CartAttacker", fields = {"method=add_to_cart"})
     public Cart add(Item item) {
+        LOG.debug("Adding item to cart");
         items.add(item);
         return this;
     }

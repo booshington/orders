@@ -21,9 +21,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <prometheus.version>0.0.21</prometheus.version>
+        <alfi.version>0.7.3</alfi.version>
     </properties>
 
     <dependencies>
+        <dependency>
+			<groupId>com.gremlin</groupId>
+			<artifactId>alfi-core</artifactId>
+			<version>${alfi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gremlin</groupId>
+			<artifactId>alfi-apache-http-client</artifactId>
+			<version>${alfi.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -140,6 +151,10 @@
     </build>
 
     <repositories>
+		<repository>
+			<id>gremlin</id>
+			<url>https://maven.gremlin.com/</url>
+		</repository>
         <repository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
